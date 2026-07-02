@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { PHONE, PHONE_DISPLAY } from '@/lib/constants';
+import { PHONE_DISPLAY } from '@/lib/constants';
 
 export default function PhoneModal({ open, onClose }) {
   const [mounted, setMounted] = useState(false);
@@ -41,10 +41,9 @@ export default function PhoneModal({ open, onClose }) {
         <h2 id="phone-modal-title">Call Us Today</h2>
         <p className="phone-modal-sub">Speak with a local appliance repair expert</p>
 
-        <a href={`tel:${PHONE}`} className="phone-modal-number">
+        <p className="phone-modal-number" aria-label={`Phone number ${PHONE_DISPLAY}`}>
           {PHONE_DISPLAY}
-        </a>
-        <p className="phone-modal-hint">Tap the number to call now</p>
+        </p>
       </div>
     </div>,
     document.body

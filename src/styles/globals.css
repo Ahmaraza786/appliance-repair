@@ -120,6 +120,11 @@ em { font-style: normal; color: var(--accent); }
   color: #fff;
   font-weight: 700;
   transition: var(--ease);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
 }
 .header-topbar-phone:hover { color: var(--accent); }
 
@@ -189,11 +194,18 @@ em { font-style: normal; color: var(--accent); }
 }
 
 .header-mega-wrap { position: relative; }
+
+.header-mega-caret { transition: transform 0.2s ease; }
+.header-mega-wrap:hover .header-mega-caret,
+.header-mega-wrap:focus-within .header-mega-caret {
+  transform: rotate(180deg);
+}
+
 .header-mega-panel {
   position: absolute;
-  top: calc(100% + 8px);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(6px);
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -201,6 +213,28 @@ em { font-style: normal; color: var(--accent); }
   padding: 1.25rem;
   min-width: 620px;
   z-index: 300;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.18s ease, visibility 0.18s ease, transform 0.18s ease;
+}
+
+/* Invisible bridge so the menu stays open while moving from trigger to panel */
+.header-mega-panel::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.header-mega-wrap:hover .header-mega-panel,
+.header-mega-wrap:focus-within .header-mega-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 .header-mega-title {
   font-size: 0.72rem;
@@ -514,23 +548,19 @@ body { padding-top: 108px; }
   font-weight: 800;
   color: var(--navy);
   letter-spacing: 0.02em;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
   padding: 1rem;
   background: linear-gradient(135deg, #fff5f5, #fef2f2);
   border: 2px dashed rgba(255, 77, 77, 0.3);
   border-radius: 16px;
   transition: var(--ease);
+  cursor: default;
+  user-select: text;
 }
 .phone-modal-number:hover {
   color: var(--accent);
   border-color: var(--accent);
   transform: scale(1.02);
-}
-
-.phone-modal-hint {
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
 /* Showcase */
@@ -715,7 +745,19 @@ body { padding-top: 108px; }
 .footer-phone {
   display: inline-flex; align-items: center; gap: 0.5rem;
   color: var(--accent); font-weight: 700; font-size: 1.1rem; margin-top: 0.5rem;
+  background: none; border: none; padding: 0; cursor: pointer; font-family: inherit;
 }
+.footer-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: inherit;
+  transition: var(--ease);
+}
+.footer-link-btn:hover { color: var(--accent); }
 .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 .footer-links h4 { color: #fff; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
 .footer-links li { margin-bottom: 0.35rem; }
@@ -732,7 +774,16 @@ body { padding-top: 108px; }
   display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
   background: var(--accent); padding: 0.85rem; text-align: center;
 }
-.mobile-sticky-cta a { color: #fff; font-weight: 700; font-size: 1rem; }
+.mobile-sticky-call {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+}
 
 /* Page hero (services) */
 .page-hero {

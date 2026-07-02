@@ -1,4 +1,5 @@
-import { PHONE, PHONE_DISPLAY } from '@/lib/constants';
+import PhoneTrigger from './PhoneTrigger';
+import { PHONE_DISPLAY } from '@/lib/constants';
 import { IMAGES } from '@/lib/images';
 
 export default function CtaSection({ title, subtitle, secondaryLink, secondaryLabel }) {
@@ -10,9 +11,9 @@ export default function CtaSection({ title, subtitle, secondaryLink, secondaryLa
         <h2>{title || 'Broken Appliance? We\'ll Fix It Today.'}</h2>
         <p>{subtitle || 'Same-day service · Upfront pricing · 90-day warranty · All brands'}</p>
         <div className="cta-v2-actions">
-          <a href={`tel:${PHONE}`} className="btn btn-accent btn-lg">
+          <PhoneTrigger className="btn btn-accent btn-lg">
             <i className="ph-fill ph-phone-call"></i> Call {PHONE_DISPLAY}
-          </a>
+          </PhoneTrigger>
           {secondaryLink && (
             <a href={secondaryLink} className="btn btn-white btn-lg">{secondaryLabel}</a>
           )}

@@ -1,5 +1,6 @@
 import TaglineSubheadline from './TaglineSubheadline';
-import { PHONE, PHONE_DISPLAY } from '@/lib/constants';
+import PhoneTrigger from './PhoneTrigger';
+import { PHONE_DISPLAY } from '@/lib/constants';
 import { IMAGES } from '@/lib/images';
 
 export default function HeroSection({ headline, subheadline, locationName, showBilingual = true }) {
@@ -43,10 +44,10 @@ export default function HeroSection({ headline, subheadline, locationName, showB
             ) : null}
 
             <div className="hero-v2-actions">
-              <a href={`tel:${PHONE}`} className="btn btn-accent btn-lg" id="hero-call-btn">
+              <PhoneTrigger className="btn btn-accent btn-lg" id="hero-call-btn">
                 <i className="ph-fill ph-phone-call"></i>
                 Call {PHONE_DISPLAY}
-              </a>
+              </PhoneTrigger>
               <a href="#services" className="btn btn-white btn-lg">
                 Explore Services
               </a>

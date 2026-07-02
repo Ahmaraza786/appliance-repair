@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import statesData from '@/data/states_only.json';
-import { PHONE, PHONE_DISPLAY, BRAND_SHORT } from '@/lib/constants';
+import PhoneTrigger from './PhoneTrigger';
+import { PHONE_DISPLAY, BRAND_SHORT } from '@/lib/constants';
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [areasOpen, setAreasOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
 
   const cols = [[], [], [], []];
   statesData.forEach((state, i) => cols[i % 4].push(state));
@@ -26,10 +26,10 @@ export default function Header() {
             <i className="ph-fill ph-lightning"></i>
             Same-Day Appliance Repair · All 50 States
           </span>
-          <a href={`tel:${PHONE}`} className="header-topbar-phone">
+          <PhoneTrigger className="header-topbar-phone">
             <i className="ph-fill ph-phone"></i>
             {PHONE_DISPLAY}
-          </a>
+          </PhoneTrigger>
         </div>
       </div>
 
@@ -50,38 +50,37 @@ export default function Header() {
             <Link href="/">Home</Link>
             <Link href="/#services">Services</Link>
             <Link href="/#team">Our Team</Link>
-            <div
-              className="header-mega-wrap"
-              onMouseEnter={() => setMegaOpen(true)}
-              onMouseLeave={() => setMegaOpen(false)}
-            >
-              <button className="header-mega-trigger" aria-expanded={megaOpen}>
+            <div className="header-mega-wrap">
+              <button
+                type="button"
+                className="header-mega-trigger"
+                aria-haspopup="true"
+                aria-expanded={false}
+              >
                 Service Areas
-                <i className={`ph-bold ph-caret-${megaOpen ? 'up' : 'down'}`}></i>
+                <i className="ph-bold ph-caret-down header-mega-caret"></i>
               </button>
-              {megaOpen && (
-                <div className="header-mega-panel">
-                  <p className="header-mega-title">Select Your State</p>
-                  <div className="header-mega-grid">
-                    {cols.map((col, idx) => (
-                      <div key={idx} className="header-mega-col">
-                        {col.map(s => (
-                          <Link key={s.slug} href={`/states/${s.slug}`}>{s.name}</Link>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
+              <div className="header-mega-panel" role="menu">
+                <p className="header-mega-title">Select Your State</p>
+                <div className="header-mega-grid">
+                  {cols.map((col, idx) => (
+                    <div key={idx} className="header-mega-col">
+                      {col.map(s => (
+                        <Link key={s.slug} href={`/states/${s.slug}`} role="menuitem">{s.name}</Link>
+                      ))}
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
             </div>
             <Link href="/services">All Services</Link>
           </nav>
 
           <div className="header-right">
-            <a href={`tel:${PHONE}`} className="btn btn-accent btn-sm header-call-btn">
+            <PhoneTrigger className="btn btn-accent btn-sm header-call-btn">
               <i className="ph-fill ph-phone-call"></i>
               Call Now
-            </a>
+            </PhoneTrigger>
             <button
               className={`header-menu-btn ${mobileOpen ? 'is-open' : ''}`}
               aria-label="Toggle menu"
@@ -120,9 +119,9 @@ export default function Header() {
               ))}
             </div>
           )}
-          <a href={`tel:${PHONE}`} className="btn btn-accent header-mobile-call" onClick={closeMobile}>
+          <PhoneTrigger className="btn btn-accent header-mobile-call" onClick={closeMobile}>
             <i className="ph-fill ph-phone-call"></i> Call {PHONE_DISPLAY}
-          </a>
+          </PhoneTrigger>
         </div>
       </div>
       {mobileOpen && <div className="header-mobile-backdrop" onClick={closeMobile} />}

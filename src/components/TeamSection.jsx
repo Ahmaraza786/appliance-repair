@@ -1,5 +1,6 @@
 import { IMAGES } from '@/lib/images';
-import { PHONE, PHONE_DISPLAY } from '@/lib/constants';
+import PhoneTrigger from './PhoneTrigger';
+import { PHONE_DISPLAY } from '@/lib/constants';
 
 export default function TeamSection({ cityName }) {
   const loc = cityName || 'Nationwide';
@@ -16,9 +17,9 @@ export default function TeamSection({ cityName }) {
               and stand behind their work with a 90-day warranty.
             </p>
           </div>
-          <a href={`tel:${PHONE}`} className="btn btn-accent hide-mobile">
+          <PhoneTrigger className="btn btn-accent hide-mobile">
             <i className="ph-fill ph-phone"></i> Book a Tech — {PHONE_DISPLAY}
-          </a>
+          </PhoneTrigger>
         </div>
 
         <div className="team-grid">

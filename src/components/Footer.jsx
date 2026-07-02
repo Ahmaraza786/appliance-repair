@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { PHONE, PHONE_DISPLAY, BRAND, TAGLINE_EN } from '@/lib/constants';
+import PhoneTrigger from './PhoneTrigger';
+import { PHONE_DISPLAY, BRAND, TAGLINE_EN } from '@/lib/constants';
 
 export default function Footer() {
   return (
@@ -16,18 +17,18 @@ export default function Footer() {
                 </span>
               </Link>
               <p>{TAGLINE_EN}</p>
-              <a href={`tel:${PHONE}`} className="footer-phone">
+              <PhoneTrigger className="footer-phone">
                 <i className="ph-fill ph-phone"></i> {PHONE_DISPLAY}
-              </a>
+              </PhoneTrigger>
             </div>
             <div className="footer-links">
               <div>
                 <h4>Services</h4>
                 <ul>
-                  <li><a href={`tel:${PHONE}`}>Refrigerator Repair</a></li>
-                  <li><a href={`tel:${PHONE}`}>Washer & Dryer</a></li>
-                  <li><a href={`tel:${PHONE}`}>Oven & Range</a></li>
-                  <li><a href={`tel:${PHONE}`}>Dishwasher Repair</a></li>
+                  <li><PhoneTrigger className="footer-link-btn">Refrigerator Repair</PhoneTrigger></li>
+                  <li><PhoneTrigger className="footer-link-btn">Washer & Dryer</PhoneTrigger></li>
+                  <li><PhoneTrigger className="footer-link-btn">Oven & Range</PhoneTrigger></li>
+                  <li><PhoneTrigger className="footer-link-btn">Dishwasher Repair</PhoneTrigger></li>
                 </ul>
               </div>
               <div>
@@ -48,7 +49,9 @@ export default function Footer() {
         </div>
       </footer>
       <div className="mobile-sticky-cta">
-        <a href={`tel:${PHONE}`}><i className="ph-fill ph-phone"></i> Call {PHONE_DISPLAY}</a>
+        <PhoneTrigger className="mobile-sticky-call">
+          <i className="ph-fill ph-phone"></i> Call {PHONE_DISPLAY}
+        </PhoneTrigger>
       </div>
     </>
   );
