@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import CallUsButton from './CallUsButton';
+import PhoneModal from './PhoneModal';
 import { SERVICE_IMAGES } from '@/lib/images';
 
 function getCitySeed(str) {
@@ -45,6 +47,7 @@ const SERVICE_VARIANTS = [
 ];
 
 export default function ServicesSection({ cityName }) {
+  const [phoneOpen, setPhoneOpen] = useState(false);
   const seed = getCitySeed(cityName);
   const loc = cityName || 'Your Area';
 
@@ -73,12 +76,14 @@ export default function ServicesSection({ cityName }) {
               <div className="service-tile-body">
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
-                <CallUsButton />
+                <CallUsButton onClick={() => setPhoneOpen(true)} />
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      <PhoneModal open={phoneOpen} onClose={() => setPhoneOpen(false)} />
     </section>
   );
 }

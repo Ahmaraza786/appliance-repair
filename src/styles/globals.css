@@ -527,7 +527,11 @@ body { padding-top: 108px; }
   transform: scale(1.02);
 }
 
-.phone-modal-call { width: 100%; }
+.phone-modal-hint {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
 
 /* Showcase */
 .showcase-section { background: var(--cream); }

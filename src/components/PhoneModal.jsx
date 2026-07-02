@@ -1,7 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { PHONE, PHONE_DISPLAY } from '@/lib/constants';
 
 export default function PhoneModal({ open, onClose }) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
   useEffect(() => {
     if (!open) return;
     const handleKey = (e) => e.key === 'Escape' && onClose();
@@ -13,9 +18,9 @@ export default function PhoneModal({ open, onClose }) {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  return createPortal(
     <div className="phone-modal-backdrop" onClick={onClose} role="presentation">
       <div
         className="phone-modal"
@@ -24,7 +29,7 @@ export default function PhoneModal({ open, onClose }) {
         aria-modal="true"
         aria-labelledby="phone-modal-title"
       >
-        <button className="phone-modal-close" onClick={onClose} aria-label="Close">
+        <button type="button" className="phone-modal-close" onClick={onClose} aria-label="Close">
           <i className="ph-bold ph-x"></i>
         </button>
 
@@ -39,12 +44,9 @@ export default function PhoneModal({ open, onClose }) {
         <a href={`tel:${PHONE}`} className="phone-modal-number">
           {PHONE_DISPLAY}
         </a>
-
-        <a href={`tel:${PHONE}`} className="btn btn-accent btn-lg phone-modal-call">
-          <i className="ph-fill ph-phone-call"></i>
-          Tap to Call Now
-        </a>
+        <p className="phone-modal-hint">Tap the number to call now</p>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
