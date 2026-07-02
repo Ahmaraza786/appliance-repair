@@ -1,0 +1,19 @@
+{
+  "name": "nationwide-appliance-repair",
+  "version": "1.0.0",
+  "description": "Nationwide Appliance Repair Pros — SEO-optimized appliance repair site for all US cities",
+  "scripts": {
+    "dev": "next dev",
+    "build": "node scripts/generate-locations.js && next build",
+    "start": "next start",
+    "generate-locations": "node scripts/generate-locations.js"
+  },
+  "dependencies": {
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^5.15.9"
+  }
+}
