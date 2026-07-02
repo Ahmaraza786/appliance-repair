@@ -1,4 +1,4 @@
-import { PHONE } from '@/lib/constants';
+import CallUsButton from './CallUsButton';
 import { SERVICE_IMAGES } from '@/lib/images';
 
 function getCitySeed(str) {
@@ -73,9 +73,7 @@ export default function ServicesSection({ cityName }) {
               <div className="service-tile-body">
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
-                <a href={`tel:${PHONE}`} className="service-tile-link">
-                  Schedule Repair <i className="ph-bold ph-arrow-right"></i>
-                </a>
+                <CallUsButton />
               </div>
             </article>
           ))}
